@@ -1,0 +1,7 @@
+target/
+data/
+.mvn/wrapper/dists/
+
+# Local databases
+*.db
+*.mv.db

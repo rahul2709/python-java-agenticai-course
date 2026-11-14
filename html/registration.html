@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f4f0">
+  <title>Create an account | Northstar</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #20231f;
+      background: #f5f4f0;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 32px;
+      background:
+        radial-gradient(ellipse at 9% 12%, rgba(218, 227, 205, 0.48), transparent 35%),
+        radial-gradient(ellipse at 92% 91%, rgba(234, 224, 206, 0.46), transparent 32%),
+        #f5f4f0;
+    }
+
+    .login-card {
+      width: min(100%, 1056px);
+      min-height: 650px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      border: 1px solid rgba(32, 35, 31, 0.07);
+      border-radius: 24px;
+      background: #fff;
+      box-shadow: 0 28px 80px rgba(37, 39, 31, 0.1);
+    }
+
+    .welcome-panel {
+      position: relative;
+      display: flex;
+      min-height: 100%;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      padding: 38px;
+      color: #f8f8f2;
+      background:
+        radial-gradient(ellipse at 16% 83%, rgba(178, 200, 145, 0.24), transparent 36%),
+        linear-gradient(145deg, #25382c 2%, #324b3a 53%, #536c4d 100%);
+    }
+
+    .welcome-panel::before,
+    .welcome-panel::after {
+      position: absolute;
+      content: "";
+      pointer-events: none;
+    }
+
+    .welcome-panel::before {
+      top: 21%;
+      left: 17%;
+      width: 310px;
+      aspect-ratio: 1;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 35px rgba(255, 255, 255, 0.035),
+        0 0 0 72px rgba(255, 255, 255, 0.025);
+    }
+
+    .welcome-panel::after {
+      right: -112px;
+      bottom: 55px;
+      width: 220px;
+      height: 220px;
+      border: 1px solid rgba(241, 238, 210, 0.22);
+      border-radius: 50%;
+    }
+
+    .brand,
+    .welcome-copy,
+    .panel-note {
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 11px;
+      color: inherit;
+      font-size: 15px;
+      font-weight: 650;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 11px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .brand-mark svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .welcome-copy {
+      max-width: 390px;
+      margin: auto 0;
+      padding: 72px 0;
+    }
+
+    .eyebrow {
+      margin: 0 0 17px;
+      color: #cbd9b5;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+    }
+
+    .welcome-copy h1 {
+      max-width: 370px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 5vw, 58px);
+      font-weight: 400;
+      letter-spacing: -0.045em;
+      line-height: 1.08;
+    }
+
+    .welcome-copy p:last-child {
+      max-width: 320px;
+      margin: 21px 0 0;
+      color: rgba(248, 248, 242, 0.74);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .panel-note {
+      margin: 0;
+      color: rgba(248, 248, 242, 0.66);
+      font-size: 12px;
+    }
+
+    .form-panel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 42px clamp(32px, 6vw, 76px);
+    }
+
+    .form-content {
+      width: 100%;
+      max-width: 360px;
+    }
+
+    .form-content h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 36px;
+      font-weight: 400;
+      letter-spacing: -0.035em;
+    }
+
+    .form-intro {
+      margin: 10px 0 28px;
+      color: #777a73;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .field {
+      margin-bottom: 15px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      color: #343831;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: 1px solid #e2e3dd;
+      border-radius: 9px;
+      outline: none;
+      background: #fff;
+      color: #20231f;
+      font: inherit;
+      font-size: 14px;
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .field input {
+      height: 49px;
+      padding: 0 14px;
+    }
+
+    .field textarea {
+      min-height: 84px;
+      padding: 13px 14px;
+      resize: vertical;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #a3a59f;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: #708566;
+      box-shadow: 0 0 0 3px rgba(112, 133, 102, 0.14);
+    }
+
+    .text-link {
+      color: #4a6043;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .text-link:hover {
+      color: #344b32;
+    }
+
+    .submit-button {
+      width: 100%;
+      min-height: 49px;
+      border: 0;
+      border-radius: 9px;
+      background: #40583b;
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 650;
+      transition: background 160ms ease, transform 160ms ease;
+    }
+
+    .submit-button:hover:not(:disabled) {
+      transform: translateY(-1px);
+      background: #344a30;
+    }
+
+    .submit-button:disabled {
+      cursor: wait;
+      opacity: 0.7;
+    }
+
+    .submit-button:focus-visible,
+    .text-link:focus-visible {
+      outline: 3px solid rgba(112, 133, 102, 0.42);
+      outline-offset: 3px;
+    }
+
+    .signup-prompt {
+      margin: 25px 0 0;
+      color: #777a73;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .signup-prompt a {
+      margin-left: 3px;
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding: 20px;
+      }
+
+      .login-card {
+        width: min(100%, 470px);
+        min-height: auto;
+        grid-template-columns: 1fr;
+      }
+
+      .welcome-panel {
+        min-height: 235px;
+        padding: 24px 28px;
+      }
+
+      .welcome-panel::before {
+        top: 8%;
+        left: 57%;
+        width: 220px;
+      }
+
+      .welcome-copy {
+        padding: 38px 0 28px;
+      }
+
+      .welcome-copy h1 {
+        max-width: 300px;
+        font-size: 42px;
+      }
+
+      .welcome-copy p:last-child,
+      .panel-note {
+        display: none;
+      }
+
+      .form-panel {
+        padding: 38px 28px 34px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      body {
+        padding: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+  <script src="/javascript/registration.js" defer></script>
+</head>
+<body>
+  <main class="login-card">
+    <section class="welcome-panel" aria-label="Welcome">
+      <a class="brand" href="index.html" aria-label="Northstar home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2.8 14.2 9.8 21.2 12l-7 2.2-2.2 7-2.2-7L2.8 12l7-2.2L12 2.8Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        northstar
+      </a>
+      <div class="welcome-copy">
+        <p class="eyebrow">A little space to focus</p>
+        <h1>Make room for what matters.</h1>
+        <p>Create your account and make your workspace your own.</p>
+      </div>
+      <p class="panel-note">A calmer way to get things done.</p>
+    </section>
+
+    <section class="form-panel" aria-labelledby="registration-title">
+      <div class="form-content">
+        <h2 id="registration-title">Create your account</h2>
+        <p class="form-intro">Add your details below. Every field is required.</p>
+
+        <form id="registration-form" novalidate>
+          <div class="field">
+            <label for="first-name">First name</label>
+            <input id="first-name" name="firstName" type="text" placeholder="First name" autocomplete="given-name" required>
+          </div>
+
+          <div class="field">
+            <label for="last-name">Last name</label>
+            <input id="last-name" name="lastName" type="text" placeholder="Last name" autocomplete="family-name" required>
+          </div>
+
+          <div class="field">
+            <label for="address">Address</label>
+            <textarea id="address" name="address" placeholder="Street address, city, and postal code" autocomplete="street-address" required></textarea>
+          </div>
+
+          <div class="field">
+            <label for="contact-email">Email address</label>
+            <input id="contact-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+          </div>
+
+          <div class="field">
+            <label for="contact-phone">Contact number</label>
+            <input id="contact-phone" name="phone" type="tel" placeholder="Your phone number" autocomplete="tel" required>
+          </div>
+
+          <button class="submit-button" type="submit">Submit registration</button>
+        </form>
+
+        <p class="signup-prompt">Already have an account?<a class="text-link" href="index.html">Sign in</a></p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
