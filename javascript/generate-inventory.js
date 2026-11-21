@@ -9,7 +9,7 @@ async function main() {
   const inventory = await readFileInventory();
   await fs.promises.mkdir(path.dirname(outputPath), { recursive: true });
   await fs.promises.writeFile(outputPath, `${JSON.stringify(inventory, null, 2)}\n`);
-  console.log(`Generated inventory for ${inventory.totalFiles} project files at ${outputPath}`);
+  console.log(` This Generated inventory is for ${inventory.totalFiles} project files at ${outputPath}`);
 }
 
 main().catch((error) => {
